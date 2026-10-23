@@ -1,0 +1,23 @@
+<div style="max-width: 360px; margin: 40px auto; padding: 20px; border: 1px solid #ccc; border-radius: 8px;">
+      <h2>Login</h2>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div style="margin-bottom: 12px;">
+          <label>Email</label><br/>
+          <input type="email" formControlName="email" style="width: 100%; padding: 8px; box-sizing: border-box;" />
+        </div>
+
+        <div style="margin-bottom: 12px;">
+          <label>Password</label><br/>
+          <input type="password" formControlName="password" style="width: 100%; padding: 8px; box-sizing: border-box;" />
+        </div>
+
+        <div *ngIf="error$ | async as error" style="color: red; margin-bottom: 12px;">
+          {{ error }}
+        </div>
+
+        <button type="submit" [disabled]="loginForm.invalid || (loading$ | async)" style="width: 100%; padding: 10px;">
+          {{ (loading$ | async) ? 'Logging in...' : 'Sign In' }}
+        </button>
+      </form>
+      <p style="margin-top: 15px;">Need an account? <a routerLink="/register">Register</a></p>
+    </div>

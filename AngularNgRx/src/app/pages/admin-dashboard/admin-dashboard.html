@@ -1,0 +1,13 @@
+<div style="padding: 24px;">
+      <header style="display: flex; justify-content: space-between; align-items: center;">
+        <h2>Admin Dashboard</h2>
+        <button (click)="logout()">Sign Out</button>
+      </header>
+
+      <p *ngIf="user$ | async as user">Logged in as: <strong>{{ user.name }}</strong> ({{ user.role }})</p>
+      
+      <div style="margin-top: 20px; padding: 16px; background: #eef9ff; border-radius: 4px;">
+        <h3>Protected API Payload:</h3>
+        <pre>{{ adminData | json }}</pre>
+      </div>
+    </div>
