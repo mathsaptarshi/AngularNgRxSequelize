@@ -16,9 +16,12 @@ exports.register = async (req, res) => {
       return res.status(400).json({ message: 'Email is already in use' });
     }
 
-    // Restrict role selection if needed; otherwise defaults to 'customer'
-    const allowedRoles = ['admin', 'customer', 'captain'];
-    const assignedRole = allowedRoles.includes(role) ? role : 'customer';
+    // const allowedRoles = ['customer', 'captain'];
+    // if (role && !allowedRoles.includes(role)) {
+    //   return res.status(400).json({ message: 'Invalid role for public registration' });
+    // }
+    const assignedRole = role || 'customer';
+    console.log("register:",assignedRole)
 
     const user = await User.create({
       name,
@@ -53,6 +56,7 @@ exports.login = async (req, res) => {
     }
 
     const user = await User.findOne({ where: { email } });
+    console.log("login:",user)
     if (!user || !(await user.comparePassword(password))) {
       return res.status(401).json({ message: 'Invalid email or password' });
     }

@@ -20,8 +20,7 @@ export class AuthEffects {
             localStorage.setItem('token', token);
             return this.authService.getProfile().pipe(
               map(({ user: profileUser }) => {
-                const { roll, ...userDetails } = profileUser;
-                const user = { ...userDetails, role: roll };
+                const user = profileUser;
                 localStorage.setItem('user', JSON.stringify(user));
                 return AuthActions.loginSuccess({ user, token });
               }),

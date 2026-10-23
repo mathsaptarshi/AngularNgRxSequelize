@@ -24,10 +24,10 @@ const User = sequelize.define('User',{
     type: DataTypes.STRING,
     allowNull: false,
   },
-  roll:{
+  role:{
     type: DataTypes.ENUM('admin', 'customer', 'captain'),
     defaultValue: 'customer',
-    allowNull: false,
+    allowNull: false
   }
 },{
   timestamps: true,

@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { AuthResponse, User, UserRole } from "../models/user.model";
+import { AuthResponse, User } from "../models/user.model";
 
 
 @Injectable({
@@ -22,11 +22,11 @@ export class AuthService {
 
   getProfile(): Observable<{
     status: string;
-    user: Omit<User, 'role'> & { roll: UserRole };
+    user: User;
   }> {
     return this.http.get<{
       status: string;
-      user: Omit<User, 'role'> & { roll: UserRole };
+      user: User;
     }>(`${this.apiUrl}/profile`);
   }
 
